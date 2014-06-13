@@ -1,11 +1,11 @@
 var should = require('chai').should();
 
-var Baker = require('../');
+var Sear = require('../');
 
-describe('Baker tests', function () {
-  var baker;
+describe('Sear tests', function () {
+  var sear;
   before(function () {
-    baker = new Baker({
+    sear = new Sear({
       input: './test_data',
       dependency_overrides: {
         jquery: 'zepto'
@@ -19,7 +19,7 @@ describe('Baker tests', function () {
   });
 
   it('should load commonjs file', function (next) {
-    baker.loadFile('', '/app.js', function (err, data) {
+    sear.loadFile('', '/app.js', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/app"') > -1).should.be.ok;
       data.base.should.equal('');
@@ -33,7 +33,7 @@ describe('Baker tests', function () {
   });
 
   it('should load commonjs file ./app.js', function (next) {
-    baker.loadFile('', './app.js', function (err, data) {
+    sear.loadFile('', './app.js', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/app"') > -1).should.be.ok;
       data.base.should.equal('');
@@ -47,7 +47,7 @@ describe('Baker tests', function () {
   });
 
   it('should load commonjs file ./app', function (next) {
-    baker.loadFile('', './app', function (err, data) {
+    sear.loadFile('', './app', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/app"') > -1).should.be.ok;
       data.base.should.equal('');
@@ -61,7 +61,7 @@ describe('Baker tests', function () {
   });
 
   it('should load amd file', function (next) {
-    baker.loadFile('./lib', './amd.js', function (err, data) {
+    sear.loadFile('./lib', './amd.js', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/lib/amd"') > -1).should.be.ok;
       data.base.should.equal('./lib');
@@ -75,7 +75,7 @@ describe('Baker tests', function () {
   });
 
   it('should load jquery from bower components', function (next) {
-    baker.loadFile('', 'jquery', function (err, data) {
+    sear.loadFile('', 'jquery', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/jquery"') > -1).should.be.ok;
       data.base.should.equal('');
@@ -87,7 +87,7 @@ describe('Baker tests', function () {
   });
 
   it('should load jquery from bower components with base', function (next) {
-    baker.loadFile('lib', 'jquery', function (err, data) {
+    sear.loadFile('lib', 'jquery', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/jquery"') > -1).should.be.ok;
       data.base.should.equal('lib');
@@ -100,7 +100,7 @@ describe('Baker tests', function () {
 
 
   it('should load foo from bower components', function (next) {
-    baker.loadFile('', 'foo', function (err, data) {
+    sear.loadFile('', 'foo', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/foo"') > -1).should.be.ok;
       data.base.should.equal('');
@@ -113,7 +113,7 @@ describe('Baker tests', function () {
   });
 
   it('should load foo/bar from bower components', function (next) {
-    baker.loadFile('', 'foo/bar', function (err, data) {
+    sear.loadFile('', 'foo/bar', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/foo/bar"') > -1).should.be.ok;
       data.base.should.equal('');
@@ -125,7 +125,7 @@ describe('Baker tests', function () {
   });
 
   it('should load foo/bar from bower components when base foo', function (next) {
-    baker.loadFile('foo', './bar', function (err, data) {
+    sear.loadFile('foo', './bar', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/foo/bar"') > -1).should.be.ok;
       data.base.should.equal('foo');
@@ -137,7 +137,7 @@ describe('Baker tests', function () {
   });
 
   it('should resolve foo/bar ./foo -> foo', function (next) {
-    baker._resolve('foo/bar', './foo', function (err, path) {
+    sear._resolve('foo/bar', './foo', function (err, path) {
       should.not.exist(err);
       path.should.equal(process.cwd() + '/test_data/bower_components/foo/foo.js');
       next();
@@ -145,7 +145,7 @@ describe('Baker tests', function () {
   });
 
   it('should load foo from bower components when base foo/bar', function (next) {
-    baker.loadFile('foo/bar', './foo', function (err, data) {
+    sear.loadFile('foo/bar', './foo', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/foo"') > -1).should.be.ok;
       data.base.should.equal('foo/bar');
@@ -157,7 +157,7 @@ describe('Baker tests', function () {
   });
 
   it('should load bower components even when another component is the base', function (next) {
-    baker.loadFile('backbone', 'underscore', function (err, data) {
+    sear.loadFile('backbone', 'underscore', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/underscore"') > -1).should.be.ok;
       data.base.should.equal('backbone');
@@ -167,7 +167,7 @@ describe('Baker tests', function () {
   });
 
   it('should support when bower package', function (next) {
-    baker.loadFile('', 'when', function (err, data) {
+    sear.loadFile('', 'when', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/when"') > -1).should.be.ok;
       data.base.should.equal('');
@@ -180,7 +180,7 @@ describe('Baker tests', function () {
 
 
   it('should support when/parallel ./when', function (next) {
-    baker.loadFile('when/parallel', './when', function (err, data) {
+    sear.loadFile('when/parallel', './when', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/when"') > -1).should.be.ok;
       data.base.should.equal('when/parallel');
@@ -192,7 +192,7 @@ describe('Baker tests', function () {
   });
 
   it('should have right relative paths', function (next) {
-    baker.loadFile('', '/foo/lib/a/a', function (err, data) {
+    sear.loadFile('', '/foo/lib/a/a', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('require("/foo/lib/b/b")') > -1).should.be.ok;
       next();
@@ -200,14 +200,14 @@ describe('Baker tests', function () {
   });
 
   it('should resolve paths corrently form index dep', function (next) {
-    baker.loadFile('/lib/indextest', './barfoo', function (err, data) {
+    sear.loadFile('/lib/indextest', './barfoo', function (err, data) {
       should.not.exist(err);
       next();
     });
   });
 
   it('should resolve index file', function (next) {
-    baker.loadFile('', '/lib/indextest', function (err, data) {
+    sear.loadFile('', '/lib/indextest', function (err, data) {
       should.not.exist(err);
       var src = data.ast.print_to_string({beautify: true, comments: true});
       (src.indexOf('define("/lib/indextest"') > -1).should.be.ok;
@@ -217,7 +217,7 @@ describe('Baker tests', function () {
   });
 
   it('should load css', function (next) {
-    baker.loadFile('./lib', './css.css', function (err, data) {
+    sear.loadFile('./lib', './css.css', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('var style = module.exports = document.createElement') > -1).should.be.ok;
       data.base.should.equal('./lib');
@@ -229,7 +229,7 @@ describe('Baker tests', function () {
   });
 
   it('should load jsx', function (next) {
-    baker.loadFile('./lib', './jsx.jsx', function (err, data) {
+    sear.loadFile('./lib', './jsx.jsx', function (err, data) {
       should.not.exist(err);
       (data.ast.print_to_string({beautify: true, comments: true}).indexOf('React.DOM.div') > -1).should.be.ok;
       data.base.should.equal('./lib');
@@ -242,7 +242,7 @@ describe('Baker tests', function () {
 
   it('should build module', function (next) {
     this.timeout(20000);
-    baker.build('app', function (err, module) {
+    sear.build('app', function (err, module) {
       should.not.exist(err);
       should.not.exist(module.getFile('bower_components/jquery/dist/jquery')); // Replaced with zepto
       module.getFile('bower_components/zepto/zepto').exist;
@@ -271,7 +271,7 @@ describe('Baker tests', function () {
 
   it('should build module & minify', function (next) {
     this.timeout(20000);
-    baker.build('app', function (err, module) {
+    sear.build('app', function (err, module) {
       should.not.exist(err);
 
       module.sortByDependencies();
