@@ -7,7 +7,7 @@
     "sear": "./bin/sear.js"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make testunit"
   },
   "repository": {
     "type": "git",
