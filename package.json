@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Applifier/sear.git"
+    "url": "git://github.com/Everyplay/sear.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Applifier/sear/issues"
+    "url": "https://github.com/Everyplay/sear/issues"
   },
   "dependencies": {
     "lodash": "~2.4.1",
