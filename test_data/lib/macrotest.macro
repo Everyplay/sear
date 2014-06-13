@@ -1,0 +1,3 @@
+module.exports = function (base, filepath, callback) {
+  return callback(null, "module.exports = 'Foobar';");
+};

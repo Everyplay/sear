@@ -1,0 +1,51 @@
+{
+  "name": "sear",
+  "version": "0.0.1",
+  "description": "Sear",
+  "main": "index.js",
+  "bin": {
+    "sear": "./bin/sear.js"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Applifier/sear.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Applifier/sear/issues"
+  },
+  "dependencies": {
+    "lodash": "~2.4.1",
+    "uglify-js": "~2.4.13",
+    "react-tools": "~0.10.0",
+    "uglifycss": "0.0.8",
+    "less": "~1.7.0",
+    "stylus": "~0.43.1",
+    "nib": "~1.0.2",
+    "brucedown": "~0.1.1",
+    "haml": "~0.4.3",
+    "node-sass": "~0.8.4",
+    "express": "~4.0.0",
+    "combined-stream": "0.0.4",
+    "send": "~0.2.0",
+    "event-stream": "~3.1.1",
+    "debug": "~0.8.0",
+    "resolve": "git://github.com/orktes/node-resolve.git",
+    "envify": "~1.2.1",
+    "jstransform": "~3.0.0",
+    "coffee-script": "~1.7.1",
+    "promptly": "~0.2.0",
+    "semver": "~2.3.0",
+    "optimist": "~0.6.1",
+    "wrench": "~1.5.8",
+    "ncp": "~0.5.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "chai": "~1.9.1"
+  }
+}
