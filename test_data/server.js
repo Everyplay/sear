@@ -1,6 +1,6 @@
-var Baker = require('../lib/baker');
+var Sear = require('../lib/sear');
 
-var baker = new Baker({
+var sear = new Sear({
   input: '.',
   name: 'app',
   index: 'index.html',
@@ -18,4 +18,4 @@ var baker = new Baker({
   ]
 });
 
-baker.getExpressApp().listen(3334);
+sear.getExpressApp().listen(3334);
