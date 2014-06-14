@@ -34,7 +34,7 @@ var command;
 
 function cb(err) {
   if (err) {
-    return console.log(err);
+    throw err;
   }
 }
 
