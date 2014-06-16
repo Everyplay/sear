@@ -278,7 +278,12 @@ describe('Sear tests', function () {
       module.files[0].key.should.equal('app');
 
       var normal = module.toString();
+
+      console.log(module.getSourceMap());
+
+
       var minified = module.toString({minify:true});
+      module.reset(); // Re-process on next toString();
       var amdOptimized = module.toString({
         minify:true,
         minify_options: {
