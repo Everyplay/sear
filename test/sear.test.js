@@ -279,8 +279,8 @@ describe('Sear tests', function () {
 
       var normal = module.toString();
 
-      console.log(module.getSourceMap());
-
+      module.getSourceMap().should.exist;
+      // TODO more sourcemap testing;
 
       var minified = module.toString({minify:true});
       module.reset(); // Re-process on next toString();
