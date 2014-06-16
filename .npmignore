@@ -1,0 +1,8 @@
+build/
+.idea/
+.temp/
+node_modules
+.DS_Store
+.baker-cache/
+test_data/
+test/
