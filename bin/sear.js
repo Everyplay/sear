@@ -12,7 +12,8 @@ var options;
 
 var cliOptions = cli.readOptions({
   v: 'version',
-  h: 'help'
+  h: 'help',
+  R: 'reporter'
 });
 
 try {
