@@ -45,7 +45,8 @@
     "uglify-js": "~2.4.13",
     "uglifycss": "0.0.8",
     "wrench": "~1.5.8",
-    "source-map": "~0.1.34"
+    "source-map": "~0.1.34",
+    "sear-require": "~0.1.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",
