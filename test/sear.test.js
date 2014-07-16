@@ -77,7 +77,8 @@ describe('Sear tests', function () {
   it('should load jquery from bower components', function (next) {
     sear.loadFile('', 'jquery', function (err, data) {
       should.not.exist(err);
-      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/jquery"') > -1).should.be.ok;
+      (data.ast.print_to_string({beautify: true, comments: true})
+        .indexOf('define("/jquery/dist/jquery"') > -1).should.be.ok;
       data.base.should.equal('');
       data.relative_path.should.equal('jquery');
       data.path.should.equal(process.cwd() + '/test_data/bower_components/jquery/dist/jquery.js');
@@ -89,7 +90,7 @@ describe('Sear tests', function () {
   it('should load jquery from bower components with base', function (next) {
     sear.loadFile('lib', 'jquery', function (err, data) {
       should.not.exist(err);
-      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/jquery"') > -1).should.be.ok;
+      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/jquery/dist/jquery"') > -1).should.be.ok;
       data.base.should.equal('lib');
       data.relative_path.should.equal('jquery');
       data.path.should.equal(process.cwd() + '/test_data/bower_components/jquery/dist/jquery.js');
@@ -102,7 +103,7 @@ describe('Sear tests', function () {
   it('should load foo from bower components', function (next) {
     sear.loadFile('', 'foo', function (err, data) {
       should.not.exist(err);
-      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/foo"') > -1).should.be.ok;
+      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/foo/foo"') > -1).should.be.ok;
       data.base.should.equal('');
       data.relative_path.should.equal('foo');
       data.path.should.equal(process.cwd() + '/test_data/bower_components/foo/foo.js');
@@ -147,7 +148,7 @@ describe('Sear tests', function () {
   it('should load foo from bower components when base foo/bar', function (next) {
     sear.loadFile('foo/bar', './foo', function (err, data) {
       should.not.exist(err);
-      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/foo"') > -1).should.be.ok;
+      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/foo/foo"') > -1).should.be.ok;
       data.base.should.equal('foo/bar');
       data.relative_path.should.equal('./foo');
       data.path.should.equal(process.cwd() + '/test_data/bower_components/foo/foo.js');
@@ -159,7 +160,7 @@ describe('Sear tests', function () {
   it('should load bower components even when another component is the base', function (next) {
     sear.loadFile('backbone', 'underscore', function (err, data) {
       should.not.exist(err);
-      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/underscore"') > -1).should.be.ok;
+      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/underscore/underscore"') > -1).should.be.ok;
       data.base.should.equal('backbone');
       data.relative_path.should.equal('underscore');
       next();
@@ -169,7 +170,7 @@ describe('Sear tests', function () {
   it('should support when bower package', function (next) {
     sear.loadFile('', 'when', function (err, data) {
       should.not.exist(err);
-      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/when"') > -1).should.be.ok;
+      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/when/when"') > -1).should.be.ok;
       data.base.should.equal('');
       data.relative_path.should.equal('when');
       data.path.should.equal(process.cwd() + '/test_data/bower_components/when/when.js');
@@ -182,7 +183,7 @@ describe('Sear tests', function () {
   it('should support when/parallel ./when', function (next) {
     sear.loadFile('when/parallel', './when', function (err, data) {
       should.not.exist(err);
-      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/when"') > -1).should.be.ok;
+      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('define("/when/when"') > -1).should.be.ok;
       data.base.should.equal('when/parallel');
       data.relative_path.should.equal('./when');
       data.path.should.equal(process.cwd() + '/test_data/bower_components/when/when.js');
@@ -210,7 +211,7 @@ describe('Sear tests', function () {
     sear.loadFile('', '/lib/indextest', function (err, data) {
       should.not.exist(err);
       var src = data.ast.print_to_string({beautify: true, comments: true});
-      (src.indexOf('define("/lib/indextest"') > -1).should.be.ok;
+      (src.indexOf('define("/lib/indextest/index"') > -1).should.be.ok;
       (src.indexOf('require("/lib/indextest/barfoo")') > -1).should.be.ok;
       next();
     });
