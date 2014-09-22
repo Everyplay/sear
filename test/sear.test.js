@@ -241,10 +241,13 @@ describe('Sear tests', function () {
     });
   });
 
-  it('should build module', function (next) {
+  it('should build bundle', function (next) {
     this.timeout(20000);
-    sear.build('app', function (err, module) {
+    sear.build('app', function (err, bundle) {
+      bundle.modules.length.should.equal(2);
       should.not.exist(err);
+      var module = bundle.modules[0];
+      should.not.exist(module.getFile('lib/lazytest'));
       should.not.exist(module.getFile('bower_components/jquery/dist/jquery')); // Replaced with zepto
       module.getFile('bower_components/zepto/zepto').exist;
       module.getFile('bower_components/backbone/backbone').exist;
@@ -266,13 +269,19 @@ describe('Sear tests', function () {
       module.getFile('lib/indextest/index').exist;
       module.getFile('lib/indextest/barfoo').exist;
 
+      var module2 = bundle.modules[1];
+      module2.getFile('lib/lazytest').exist;
+      module2.getFile('lib/lazysdeb').exist;
+      should.not.exist(module2.getFile('bower_components/backbone/backbone'));
+
       next();
     });
   });
 
-  it('should build module & minify', function (next) {
+  it('should build bundle & minify', function (next) {
     this.timeout(20000);
-    sear.build('app', function (err, module) {
+    sear.build('app', function (err, bundle) {
+      var module = bundle.modules[0];
       should.not.exist(err);
 
       module.sortByDependencies();
@@ -298,6 +307,7 @@ describe('Sear tests', function () {
 
       (minified.length / normal.length < 0.6).should.be.ok;
       (amdOptimized.length / minified.length < 1).should.be.ok;
+
       next();
     });
   });

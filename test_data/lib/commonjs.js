@@ -17,3 +17,5 @@ exports.indextest = require('./indextest');
 exports.macro = require('./macrotest.macro');
 
 console.log(exports.amd);
+
+lazyload('./lazytest', function () {});
