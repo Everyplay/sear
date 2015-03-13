@@ -232,7 +232,7 @@ describe('Sear tests', function () {
   it('should load jsx', function (next) {
     sear.loadFile('./lib', './jsx.jsx', function (err, data) {
       should.not.exist(err);
-      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('React.DOM.div') > -1).should.be.ok;
+      (data.ast.print_to_string({beautify: true, comments: true}).indexOf('React.renderComponent(React.createElement(HelloMessage') > -1).should.be.ok;
       data.base.should.equal('./lib');
       data.relative_path.should.equal('./jsx.jsx');
       data.path.should.equal(process.cwd() + '/test_data/lib/jsx.jsx');

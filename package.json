@@ -1,6 +1,6 @@
 {
   "name": "sear",
-  "version": "0.0.25",
+  "version": "0.1.0",
   "description": "Sear",
   "main": "index.js",
   "bin": {
@@ -27,7 +27,6 @@
     "event-stream": "~3.1.1",
     "express": "~4.0.0",
     "haml": "~0.4.3",
-    "jstransform": "~3.0.0",
     "less": "~1.7.0",
     "lodash": "~2.4.1",
     "mocha-phantomjs": "^3.4.1",
@@ -37,7 +36,7 @@
     "optimist": "~0.6.1",
     "phantomjs": "^1.9.7-8",
     "promptly": "~0.2.0",
-    "react-tools": "~0.10.0",
+    "react-tools": "~0.13.0",
     "resolve": "git://github.com/orktes/node-resolve.git",
     "semver": "~2.3.0",
     "send": "~0.2.0",
@@ -48,7 +47,8 @@
     "source-map": "0.1.34",
     "sear-require": "~0.2.0",
     "sockjs": "~0.3.9",
-    "chokidar": "~0.8.2"
+    "chokidar": "~0.8.2",
+    "jstransform": "~10.1.0"
   },
   "devDependencies": {
     "chai": "~1.9.1",
