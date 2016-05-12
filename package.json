@@ -30,12 +30,10 @@
     "jstransform": "~3.0.0",
     "less": "~1.7.0",
     "lodash": "~2.4.1",
-    "mocha-phantomjs": "^3.4.1",
     "ncp": "~0.5.1",
     "nib": "~1.0.2",
     "node-sass": "~0.8.4",
     "optimist": "~0.6.1",
-    "phantomjs": "^1.9.7-8",
     "promptly": "~0.2.0",
     "react-tools": "~0.10.0",
     "resolve": "git://github.com/orktes/node-resolve.git",
@@ -54,6 +52,8 @@
     "chai": "~1.9.1",
     "jsxcs": "0.0.2",
     "jsxhint": "^0.4.10",
-    "mocha": "~1.18.2"
+    "mocha": "~1.18.2",
+    "mocha-phantomjs": "~4.0.0",
+    "phantomjs": "~1.9.20"
   }
 }
